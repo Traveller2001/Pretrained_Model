@@ -1,0 +1,2 @@
+eval_loss : 0.387
+eval_accuracy : 90.112849

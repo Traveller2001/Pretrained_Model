@@ -1,0 +1,52 @@
+{
+ 
+
+
+  "train_batch_size": 16,
+  "steps_per_print": 50,
+  "optimizer": {
+        "type": "AdamW",
+        "params": {
+          "lr": 0.00001,
+          "betas": [
+            0.8,
+            0.999
+          ],
+          "eps": 1e-8,
+          "weight_decay": 0.01
+        }
+      },
+    "scheduler": {
+        "type": "WarmupLR",
+        "params": {
+          "warmup_min_lr": 0,
+          "warmup_max_lr": 0.1,
+          "warmup_num_steps": 0
+        }
+      },
+   
+      "zero_optimization": {
+        "stage": 3,
+        "contiguous_gradients": true,
+        "stage3_max_live_parameters": 1e9,
+        "stage3_max_reuse_distance": 1e9,
+        "stage3_prefetch_bucket_size": 1e7,
+        "stage3_param_persistence_threshold": 1e5,
+        "reduce_bucket_size": 1e7,
+        "sub_group_size": 1e9,
+        "offload_optimizer": {
+            "device": "cpu"
+         },
+        "offload_param": {
+            "device": "cpu"
+       }
+      },
+
+      "disable_allgather": true,
+      "fp16": {
+        "enabled": true
+      },
+      
+      
+    "wall_clock_breakdown": false
+}
